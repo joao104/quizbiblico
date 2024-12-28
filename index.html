@@ -27,7 +27,7 @@
 
         #button-no {
             position: absolute;
-            transition: left 0.3s, top 0.3s;
+            transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
         }
 
         .emoji {
@@ -51,8 +51,7 @@
             const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
             const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
 
-            noButton.style.left = x + "px";
-            noButton.style.top = y + "px";
+            noButton.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function confirmMessage() {
@@ -83,7 +82,7 @@
     </script>
 </head>
 <body>
-    <h1>Julia é uma feia?</h1>
+    <h1>Julia é linda?</h1>
     <button id="button-yes" onclick="confirmMessage()">Sim</button>
     <button id="button-no" onmouseover="moveNoButton()">Não</button>
 </body>
