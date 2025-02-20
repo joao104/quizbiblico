@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,48 +6,24 @@
     <title>Quiz Bíblico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('https://github.com/joao104/quizbiblico/raw/main/jovensjd.png');
-    background-image: url('imagens/jovensjd.png'); /* Caminho da imagem */
-    background-image: url('jovensjd.png');
-
-    background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
-    background-position: center; /* Centraliza a imagem na tela */
-    background-repeat: no-repeat; /* Não repete a imagem */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-}
-
-.container {
-    text-align: center;
-    color: white;
-    position: absolute;
-    top: 5%; /* Ajusta a posição do logo mais para cima */
-    width: 100%; /* Garante que a largura da div ocupe toda a tela */
-}
-
-
-@keyframes glow {
-    0% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
-    50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 60px #FFD700, 0 0 70px #FFD700, 0 0 80px #FFD700; }
-    100% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
-}
-
-
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #1e3c72);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            color: white;
+        }
         .logo {
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    color: #32CD32; /* Defina a cor desejada aqui */
-    animation: glow 1.5s ease-in-out infinite; /* Animação do brilho pulsante */
-
-}
-
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
         .start-btn, .submit-btn {
             margin-top: 20px;
             padding: 15px 30px;
@@ -83,7 +59,7 @@ body {
         .quiz-container, .name-container, .ranking-container {
             display: none;
             text-align: center;
-            background: rgb(182, 186, 69);
+            background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -127,7 +103,7 @@ body {
     <div class="container">
         <div class="logo">📖 Quiz Bíblico</div>
         <div class="name-container" id="nameContainer">
-            <input type="text" id="playerName" placeholder="Digite seu nome ou Nick" />
+            <input type="text" id="playerName" placeholder="Digite seu nome ou nickname" />
             <button class="start-btn" onclick="startQuiz()">Começar</button>
         </div>
         <div class="quiz-container" id="quizContainer">
@@ -175,7 +151,7 @@ body {
             document.getElementById("question").innerText = q.question;
             let optionsHtml = "";
             q.options.forEach((opt, index) => {
-                optionsHtml += <button class='option' onclick='checkAnswer(${index})'>${opt}</button>;
+                optionsHtml += `<button class='option' onclick='checkAnswer(${index})'>${opt}</button>`;
             });
             document.getElementById("options").innerHTML = optionsHtml;
         }
@@ -198,9 +174,31 @@ body {
                 showRanking();
             }
         }
-    </script>
-   
 
+        function saveScore() {
+            rankings.push({ name: playerName, score: score });
+            rankings.sort((a, b) => b.score - a.score); // Ordena por pontuação
+            if (rankings.length > 5) rankings = rankings.slice(0, 5); // Limita aos 5 primeiros
+            localStorage.setItem('rankings', JSON.stringify(rankings));
+        }
+
+        function showRanking() {
+            document.getElementById("quizContainer").style.display = "none";
+            document.getElementById("rankingContainer").style.display = "block";
+            let rankingHtml = '<h3>Ranking:</h3>';
+            rankings.forEach((entry, index) => {
+                rankingHtml += `<p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>`;
+            });
+            document.getElementById("ranking").innerHTML = rankingHtml;
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('playerName').value = '';
+            document.getElementById("nameContainer").style.display = "block";
+            document.getElementById("rankingContainer").style.display = "none";
+        }
+    </script>
 </body>
 </html>
-
