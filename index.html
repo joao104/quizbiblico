@@ -1,95 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julia é linda</title>
+    <title>Quiz Bíblico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-            background-color: pink;
-            overflow: hidden;
-            position: relative;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('imagens/jovensjd.png'); /* Caminho da imagem */
+    background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem na tela */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
 
-        h1 {
-            font-size: 3rem;
-        }
+.container {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 5%; /* Ajusta a posição do logo mais para cima */
+    width: 100%; /* Garante que a largura da div ocupe toda a tela */
+}
 
-        button {
-            font-size: 1.5rem;
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
+    50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 60px #FFD700, 0 0 70px #FFD700, 0 0 80px #FFD700; }
+    100% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
+}
+
+
+        .logo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    color: #32CD32; /* Defina a cor desejada aqui */
+    animation: glow 1.5s ease-in-out infinite; /* Animação do brilho pulsante */
+
+}
+
+        .start-btn, .submit-btn {
+            margin-top: 20px;
             padding: 15px 30px;
-            margin: 10px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            background: #ffd700;
+            color: #333;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .start-btn:hover, .submit-btn:hover {
+            background: #ffcc00;
+        }
+        .cross {
+            width: 80px;
+            height: 100px;
+            background: gold;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transform: rotate(20deg);
+        }
+        .cross:before {
+            content: "";
+            width: 100px;
+            height: 30px;
+            background: gold;
+            position: absolute;
+            top: 35px;
+            left: -10px;
+        }
+        .quiz-container, .name-container, .ranking-container {
+            display: none;
+            text-align: center;
+            background: rgb(182, 186, 69);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+        .name-container {
+            display: block; /* Certifique-se que o nome-container está visível */
+        }
+        .question {
+            font-size: 1.5rem;
+        }
+        .options {
+            margin-top: 15px;
+        }
+        .option {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background: #4a90e2;
+            color: white;
             cursor: pointer;
         }
-
-        #button-no {
-            position: absolute;
-            transition: top 0.3s ease, left 0.3s ease;
+        .option:hover {
+            background: #357ab8;
         }
-
-        .emoji {
-            position: absolute;
-            font-size: 24px;
-            animation: fall 5s linear infinite;
+        .score {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-
-        @keyframes fall {
-            from {
-                transform: translateY(-100px);
-            }
-            to {
-                transform: translateY(100vh);
-            }
+        .ranking {
+            font-size: 1.2rem;
+            margin-top: 20px;
         }
     </style>
-    <script>
-        function moveNoButton() {
-            const noButton = document.getElementById("button-no");
-            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
-
-            noButton.style.left = `${x}px`;
-            noButton.style.top = `${y}px`;
-        }
-
-        function confirmMessage() {
-            alert("Você está absolutamente certo, Julia é linda!");
-        }
-
-        function createEmojis() {
-            const emojis = ['❤️', '😂', '🎉', '🌟', '😎', '💃', '💖', '✨', '🎈', '🍭'];
-            const emojiContainer = document.createElement('div');
-            document.body.appendChild(emojiContainer);
-
-            setInterval(() => {
-                const emoji = document.createElement('div');
-                emoji.className = 'emoji';
-                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                emoji.style.left = Math.random() * window.innerWidth + 'px';
-                emoji.style.top = '-50px';
-                emoji.style.fontSize = Math.random() * 24 + 24 + 'px';
-                emojiContainer.appendChild(emoji);
-
-                setTimeout(() => {
-                    emoji.remove();
-                }, 5000);
-            }, 300);
-        }
-
-        window.onload = () => {
-            createEmojis();
-            const noButton = document.getElementById("button-no");
-            noButton.addEventListener("mouseover", moveNoButton);
-            noButton.addEventListener("touchstart", moveNoButton);
-        };
-    </script>
 </head>
 <body>
-    <h1>Julia e uma feia?</h1>
-    <button id="button-yes" onclick="confirmMessage()">Sim</button>
-    <button id="button-no">Não</button>
+    <div class="cross"></div>
+    <div class="container">
+        <div class="logo">📖 Quiz Bíblico</div>
+        <div class="name-container" id="nameContainer">
+            <input type="text" id="playerName" placeholder="Digite seu nome ou Nick" />
+            <button class="start-btn" onclick="startQuiz()">Começar</button>
+        </div>
+        <div class="quiz-container" id="quizContainer">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+            <div class="score" id="score">Pontuação: 0</div>
+        </div>
+        <div class="ranking-container" id="rankingContainer">
+            <div class="ranking" id="ranking"></div>
+            <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            { question: "Qual é o início da sabedoria, segundo o livro de Provérbios?", options: ["Temer a Deus", "Estudar muito", "Ter riqueza", "Fazer boas ações"], answer: 0 },
+            { question: "O que é mais precioso do que rubis, segundo Provérbios?", options: ["A sabedoria", "A amizade", "O amor", "A coragem"], answer: 0 },
+            { question: "Segundo Provérbios, o que devemos fazer para encontrar sabedoria?", options: ["Buscar com diligência", "Estudar as escrituras", "Pedir a Deus", "Meditar"], answer: 0 },
+            { question: "Quem é o amigo que ama em todo o tempo, de acordo com Provérbios?", options: ["O sábio", "O rico", "O justo", "O irmão"], answer: 3 },
+            { question: "O que diz Provérbios sobre a boca do tolo?", options: ["Fala de sabedoria", "Fala em maldade", "Fala com sabedoria", "Fala com amor"], answer: 1 },
+            { question: "O que Provérbios ensina sobre a ira?", options: ["A ira do homem não opera a justiça de Deus", "A ira é justa em todas as situações", "A ira é a melhor resposta", "A ira deve ser controlada com sabedoria"], answer: 0 },
+            { question: "Como a mulher sábia é descrita em Provérbios?", options: ["Com palavras amáveis", "Com grande beleza", "Com riqueza", "Com muitas posses"], answer: 0 },
+            { question: "O que diz Provérbios sobre os caminhos do justo?", options: ["São retos", "São incertos", "São tortuosos", "São perigosos"], answer: 0 },
+            { question: "O que é mais forte que a força física, segundo Provérbios?", options: ["A sabedoria", "A coragem", "A paciência", "A raiva"], answer: 0 },
+            { question: "O que Provérbios ensina sobre o trabalho?", options: ["É uma benção", "É um fardo", "Deve ser evitado", "É necessário para a vida"], answer: 3 }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let playerName = '';
+        let rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+
+        function startQuiz() {
+            playerName = document.getElementById('playerName').value;
+            if (playerName.trim() === '') {
+                alert('Por favor, insira um nome!');
+                return;
+            }
+            document.getElementById("nameContainer").style.display = "none";
+            document.getElementById("quizContainer").style.display = "block";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            let q = questions[currentQuestionIndex];
+            document.getElementById("question").innerText = q.question;
+            let optionsHtml = "";
+            q.options.forEach((opt, index) => {
+                optionsHtml += `<button class='option' onclick='checkAnswer(${index})'>${opt}</button>`;
+            });
+            document.getElementById("options").innerHTML = optionsHtml;
+        }
+
+        function checkAnswer(selectedIndex) {
+            let q = questions[currentQuestionIndex];
+            if (selectedIndex === q.answer) {
+                score += 10;
+                alert("Resposta correta!");
+            } else {
+                alert("Resposta errada. Tente novamente!");
+            }
+            document.getElementById("score").innerText = "Pontuação: " + score;
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                alert("Quiz finalizado! Sua pontuação foi: " + score);
+                saveScore();
+                showRanking();
+            }
+        }
+
+        function saveScore() {
+            rankings.push({ name: playerName, score: score });
+            rankings.sort((a, b) => b.score - a.score); // Ordena por pontuação
+            if (rankings.length > 5) rankings = rankings.slice(0, 5); // Limita aos 5 primeiros
+            localStorage.setItem('rankings', JSON.stringify(rankings));
+        }
+
+        function showRanking() {
+            document.getElementById("quizContainer").style.display = "none";
+            document.getElementById("rankingContainer").style.display = "block";
+            let rankingHtml = '<h3>Ranking:</h3>';
+            rankings.forEach((entry, index) => {
+                rankingHtml += `<p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>`;
+            });
+            document.getElementById("ranking").innerHTML = rankingHtml;
+        }
+
+        function resetGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('playerName').value = '';
+            document.getElementById("nameContainer").style.display = "block";
+            document.getElementById("rankingContainer").style.display = "none";
+        }
+    </script>
 </body>
 </html>
