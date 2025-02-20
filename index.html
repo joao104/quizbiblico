@@ -112,7 +112,7 @@
         <div class="logo">📖 Quiz Bíblico</div>
         <div class="name-container" id="nameContainer">
             <input type="text" id="playerName" placeholder="Digite seu nome ou Nick" />
-            <button class="start-btn" onclick="startQuiz()">Começar</button>
+            <button class="start-btn" id="startButton" onclick="startQuiz()">Começar</button>
         </div>
         <div class="quiz-container" id="quizContainer">
             <div class="question" id="question"></div>
@@ -201,13 +201,13 @@
         }
 
         function saveScore() {
-            ranking.push({ name: playerName, score: score });
-            ranking.sort((a, b) => b.score - a.score); 
-            if (ranking.length > 5) ranking = ranking.slice(0, 5); 
-            localStorage.setItem('ranking', JSON.stringify(ranking));
+            rankings.push({ name: playerName, score: score });
+            rankings.sort((a, b) => b.score - a.score); 
+            if (rankings.length > 5) rankings = rankings.slice(0, 5); 
+            localStorage.setItem('rankings', JSON.stringify(rankings));
 
             // Salvar no Firebase
-            db.collection("ranking").add({
+            db.collection("rankings").add({
                 name: playerName,
                 score: score
             })
