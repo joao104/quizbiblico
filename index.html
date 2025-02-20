@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,41 +6,47 @@
     <title>Quiz Bíblico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('https://github.com/joao104/quizbiblico/raw/main/jovensjd.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://github.com/joao104/quizbiblico/raw/main/jovensjd.png');
+    background-image: url('imagens/jovensjd.png'); /* Caminho da imagem */
+    background-image: url('jovensjd.png');
 
-        .container {
-            text-align: center;
-            color: white;
-            position: absolute;
-            top: 5%;
-            width: 100%;
-        }
+    background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+    background-position: center; /* Centraliza a imagem na tela */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
 
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
-            50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 60px #FFD700, 0 0 70px #FFD700, 0 0 80px #FFD700; }
-            100% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
-        }
+.container {
+    text-align: center;
+    color: white;
+    position: absolute;
+    top: 5%; /* Ajusta a posição do logo mais para cima */
+    width: 100%; /* Garante que a largura da div ocupe toda a tela */
+}
+
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
+    50% { text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 60px #FFD700, 0 0 70px #FFD700, 0 0 80px #FFD700; }
+    100% { text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 30px #FFD700, 0 0 35px #FFD700; }
+}
+
 
         .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            color: #32CD32;
-            animation: glow 1.5s ease-in-out infinite;
-        }
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    color: #32CD32; /* Defina a cor desejada aqui */
+    animation: glow 1.5s ease-in-out infinite; /* Animação do brilho pulsante */
+
+}
 
         .start-btn, .submit-btn {
             margin-top: 20px;
@@ -53,11 +59,27 @@
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
         .start-btn:hover, .submit-btn:hover {
             background: #ffcc00;
         }
-
+        .cross {
+            width: 80px;
+            height: 100px;
+            background: gold;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transform: rotate(20deg);
+        }
+        .cross:before {
+            content: "";
+            width: 100px;
+            height: 30px;
+            background: gold;
+            position: absolute;
+            top: 35px;
+            left: -10px;
+        }
         .quiz-container, .name-container, .ranking-container {
             display: none;
             text-align: center;
@@ -67,19 +89,15 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             color: black;
         }
-
         .name-container {
-            display: block;
+            display: block; /* Certifique-se que o nome-container está visível */
         }
-
         .question {
             font-size: 1.5rem;
         }
-
         .options {
             margin-top: 15px;
         }
-
         .option {
             display: block;
             padding: 10px;
@@ -90,17 +108,14 @@
             color: white;
             cursor: pointer;
         }
-
         .option:hover {
             background: #357ab8;
         }
-
         .score {
             margin-top: 20px;
             font-size: 1.5rem;
             font-weight: bold;
         }
-
         .ranking {
             font-size: 1.2rem;
             margin-top: 20px;
@@ -108,11 +123,12 @@
     </style>
 </head>
 <body>
+    <div class="cross"></div>
     <div class="container">
         <div class="logo">📖 Quiz Bíblico</div>
         <div class="name-container" id="nameContainer">
             <input type="text" id="playerName" placeholder="Digite seu nome ou Nick" />
-            <button class="start-btn" id="startButton" onclick="startQuiz()">Começar</button>
+            <button class="start-btn" onclick="startQuiz()">Começar</button>
         </div>
         <div class="quiz-container" id="quizContainer">
             <div class="question" id="question"></div>
@@ -124,24 +140,7 @@
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
     </div>
-
-    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase-firestore.js"></script>
-    
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBO_sF0DUYgAw3Xn8pRR6EYyJHBf9MbJSQ",
-            authDomain: "quizbiblico-bdff3.firebaseapp.com",
-            projectId: "quizbiblico-bdff3",
-            storageBucket: "quizbiblico-bdff3.appspot.com",
-            messagingSenderId: "10523627476",
-            appId: "1:10523627476:web:94f4917c49341024579041",
-            measurementId: "G-PDWV83JNLK"
-        };
-
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore(app);
-
         const questions = [
             { question: "Qual é o início da sabedoria, segundo o livro de Provérbios?", options: ["Temer a Deus", "Estudar muito", "Ter riqueza", "Fazer boas ações"], answer: 0 },
             { question: "O que é mais precioso do que rubis, segundo Provérbios?", options: ["A sabedoria", "A amizade", "O amor", "A coragem"], answer: 0 },
@@ -158,7 +157,7 @@
         let currentQuestionIndex = 0;
         let score = 0;
         let playerName = '';
-        let rankings = [];
+        let rankings = JSON.parse(localStorage.getItem('rankings')) || [];
 
         function startQuiz() {
             playerName = document.getElementById('playerName').value;
@@ -176,7 +175,7 @@
             document.getElementById("question").innerText = q.question;
             let optionsHtml = "";
             q.options.forEach((opt, index) => {
-                optionsHtml += `<button class='option' onclick='checkAnswer(${index})'>${opt}</button>`;
+                optionsHtml += <button class='option' onclick='checkAnswer(${index})'>${opt}</button>;
             });
             document.getElementById("options").innerHTML = optionsHtml;
         }
@@ -202,17 +201,9 @@
 
         function saveScore() {
             rankings.push({ name: playerName, score: score });
-            rankings.sort((a, b) => b.score - a.score); 
-            if (rankings.length > 5) rankings = rankings.slice(0, 5); 
+            rankings.sort((a, b) => b.score - a.score); // Ordena por pontuação
+            if (rankings.length > 5) rankings = rankings.slice(0, 5); // Limita aos 5 primeiros
             localStorage.setItem('rankings', JSON.stringify(rankings));
-
-            // Salvar no Firebase
-            db.collection("rankings").add({
-                name: playerName,
-                score: score
-            })
-            .then(() => console.log("Ranking salvo com sucesso no Firebase"))
-            .catch((error) => console.error("Erro ao salvar no Firebase: ", error));
         }
 
         function showRanking() {
@@ -220,7 +211,7 @@
             document.getElementById("rankingContainer").style.display = "block";
             let rankingHtml = '<h3>Ranking:</h3>';
             rankings.forEach((entry, index) => {
-                rankingHtml += `<p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>`;
+                rankingHtml += <p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>;
             });
             document.getElementById("ranking").innerHTML = rankingHtml;
         }
@@ -232,6 +223,81 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
         }
+        
     </script>
+    <!-- Adicionar o script do Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+<script>
+  // A configuração do Firebase
+  const firebaseConfig = {
+    apiKey:  "AIzaSyBO_sF0DUYgAw3Xn8pRR6EYyJHBf9MbJSQ",
+    authDomain: "quizbiblico-bdff3.firebaseapp.com",
+    projectId:  "quizbiblico-bdff3",
+    storageBucket: "quizbiblico-bdff3.firebasestorage.app",
+    messagingSenderId:  "10523627476",
+    appId:"1:10523627476:web:94f4917c49341024579041",
+    measurementId:  "G-PDWV83JNLK"
+  };
+
+  // Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+function saveScore(playerName, score) {
+    db.collection("ranking").add({
+        name: playerName,
+        score: score
+    }).then(() => {
+        alert("Pontuação salva!");
+        showRanking(); // Atualizar o ranking após salvar a pontuação
+    }).catch((error) => {
+        console.error("Erro ao salvar a pontuação: ", error);
+    });
+}function showRanking() {
+    db.collection("ranking").orderBy("score", "desc").limit(10).get().then((querySnapshot) => {
+        let rankingHtml = "";
+        querySnapshot.forEach((doc) => {
+            rankingHtml += <p>${doc.data().name}: ${doc.data().score} pontos</p>;
+        });
+        document.getElementById("ranking").innerHTML = rankingHtml;
+    }).catch((error) => {
+        console.error("Erro ao carregar o ranking: ", error);
+    });
+}
+
+    <div id="ranking">
+    <!-- Aqui será exibido o ranking -->
+</div>
+
+
+    function endQuiz() {
+    let playerName = document.getElementById("playerName").value;
+    if (playerName.trim() === "") {
+        alert("Por favor, insira seu nome!");
+        return;
+    }
+
+    saveScore(playerName, score); // Salvar a pontuação no Firebase
+}
+
+
+    <div class="name-container" id="nameContainer">
+    <input type="text" id="playerName" placeholder="Digite seu nome ou nickname" />
+    <button class="start-btn" onclick="startQuiz()">Começar</button>
+</div>
+
+
+
+    
+
+
+</script>
+
+
+    
+
 </body>
 </html>
+
