@@ -201,6 +201,13 @@
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
 
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        allowfullscreen>
+    </iframe>
+</div>
+
     <script>
         const questions = [
             { question: "Qual é o início da sabedoria, segundo o livro de Provérbios?", options: ["Temer a Deus", "Estudar muito", "Ter riqueza", "Fazer boas ações"], answer: 0 },
@@ -295,17 +302,6 @@
             document.getElementById("ranking").innerHTML = rankingHtml;
 
 
-
-
-                
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-        allowfullscreen>
-    </iframe>
-</div>
-
-
         function resetGame() {
             currentQuestionIndex = 0;
             score = 0;
@@ -313,10 +309,6 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
             document.getElementById("videoContainer").style.display = "none";
-            // No trecho onde o quiz finaliza (substitua a linha correta no seu código)
-document.getElementById('quiz-container').style.display = 'none'; // Esconder o quiz
-document.getElementById('video-container').style.display = 'block'; // Exibir o vídeo
-
 }
             const finalVideo = document.getElementById("finalVideo");
             finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
