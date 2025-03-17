@@ -168,7 +168,7 @@
         }
         video {
             max-width: 100%;
-            height: auto;
+             display: none;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -183,12 +183,6 @@
         <div class="bible">📖</div>
         <div class="bible">📖</div>
     </div>
-
-    <!-- Controle de música -->
-    <div class="music-control" onclick="toggleMusic()">
-        <i id="musicIcon" class="fas fa-play"></i>
-    </div>
-
     <div class="cross"></div>
     <div class="container">
         <div class="logo">📖 Quiz Bíblico</div> <br><br>
@@ -206,13 +200,6 @@
             <div class="ranking" id="ranking"></div>
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
-        <!-- Contêiner do vídeo -->
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-        allowfullscreen>
-    </iframe>
-</div>
 
     <script>
         const questions = [
@@ -249,12 +236,7 @@
             }
         }
 
-        // Iniciar música automaticamente ao carregar a página
-        window.onload = function() {
-            backgroundMusic.play();
-            musicIcon.classList.remove('fa-play');
-            musicIcon.classList.add('fa-pause');
-        };
+
 
         function startQuiz() {
             playerName = document.getElementById('playerName').value;
@@ -312,9 +294,16 @@
             });
             document.getElementById("ranking").innerHTML = rankingHtml;
 
-            // Exibir o vídeo somente ao finalizar o quiz
-    document.getElementById('video-container').style.display = 'block';
-}
+
+
+
+                <!-- Contêiner do vídeo -->
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        allowfullscreen>
+    </iframe>
+</div>
 
 
         function resetGame() {
@@ -324,6 +313,9 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
             document.getElementById("videoContainer").style.display = "none";
+                        // Exibir o vídeo somente ao finalizar o quiz
+    document.getElementById('video-container').style.display = 'block';
+}
             const finalVideo = document.getElementById("finalVideo");
             finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
             finalVideo.currentTime = 0; // Reinicia o vídeo para o início
