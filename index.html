@@ -279,13 +279,6 @@
             }
         }
 
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-        allowfullscreen>
-    </iframe>
-</div>
-
         function saveScore() {
             rankings.push({ name: playerName, score: score });
             rankings.sort((a, b) => b.score - a.score); // Ordena por pontuação
@@ -310,15 +303,23 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
             document.getElementById("videoContainer").style.display = "none";
-            document.getElementById('quiz-container').style.display = 'block'; // Esconder o quiz
-document.getElementById('video-container').style.display = 'block'; // Exibir o vídeo
+ Exibir o vídeo
 
 }
+
+
             
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        allowfullscreen>
+    </iframe>
+</div>
             const finalVideo = document.getElementById("finalVideo");
             finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
             finalVideo.currentTime = 0; // Reinicia o vídeo para o início
         }
+ 
     </script>
 </body>
 </html>
