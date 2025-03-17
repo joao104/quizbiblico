@@ -201,12 +201,6 @@
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
 
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-        allowfullscreen>
-    </iframe>
-</div>
 
     <script>
         const questions = [
@@ -284,6 +278,13 @@
                 showRanking();
             }
         }
+
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        allowfullscreen>
+    </iframe>
+</div>
 
         function saveScore() {
             rankings.push({ name: playerName, score: score });
