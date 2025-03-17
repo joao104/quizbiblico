@@ -297,7 +297,7 @@
 
 
 
-                <!-- Contêiner do vídeo -->
+                
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
     <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
@@ -313,8 +313,10 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
             document.getElementById("videoContainer").style.display = "none";
-                        // Exibir o vídeo somente ao finalizar o quiz
-    document.getElementById('video-container').style.display = 'block';
+            // No trecho onde o quiz finaliza (substitua a linha correta no seu código)
+document.getElementById('quiz-container').style.display = 'none'; // Esconder o quiz
+document.getElementById('video-container').style.display = 'block'; // Exibir o vídeo
+
 }
             const finalVideo = document.getElementById("finalVideo");
             finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
