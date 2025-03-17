@@ -287,7 +287,6 @@
             if (rankings.length > 5) rankings = rankings.slice(0, 5); // Limita aos 5 primeiros
             localStorage.setItem('rankings', JSON.stringify(rankings));
         }
-
         function showRanking() {
             document.getElementById("quizContainer").style.display = "none";
             document.getElementById("rankingContainer").style.display = "block";
@@ -297,6 +296,11 @@
             });
             document.getElementById("ranking").innerHTML = rankingHtml;
 
+            // Exibir o vídeo ao final do quiz
+            document.getElementById("videoContainer").style.display = "block";
+            const finalVideo = document.getElementById("finalVideo");
+            finalVideo.play(); // Inicia a reprodução do vídeo automaticamente
+        }
 
         function resetGame() {
             currentQuestionIndex = 0;
@@ -305,14 +309,10 @@
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
             document.getElementById("videoContainer").style.display = "none";
- 
-}
-
             const finalVideo = document.getElementById("finalVideo");
             finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
             finalVideo.currentTime = 0; // Reinicia o vídeo para o início
         }
- 
     </script>
 </body>
 </html>
