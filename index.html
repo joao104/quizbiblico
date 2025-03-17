@@ -164,6 +164,7 @@
         .video-container {
             margin-top: 20px;
             text-align: center;
+            display: none;
         }
         video {
             max-width: 100%;
@@ -311,11 +312,10 @@
             });
             document.getElementById("ranking").innerHTML = rankingHtml;
 
-            // Exibir o vídeo ao final do quiz
-            document.getElementById("videoContainer").style.display = "block";
-            const finalVideo = document.getElementById("finalVideo");
-            finalVideo.play(); // Inicia a reprodução do vídeo automaticamente
-        }
+            // Exibir o vídeo somente ao finalizar o quiz
+    document.getElementById('video-container').style.display = 'block';
+}
+
 
         function resetGame() {
             currentQuestionIndex = 0;
