@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Bíblico</title>
+    <title>Quiz Bíblico</title> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
@@ -14,10 +14,59 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden; /* Para evitar barras de rolagem */
+            position: relative;
+        }
+        .rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Para não interferir com os cliques do quiz */
+        }
+        .bible {
+            position: absolute;
+            top: -50px;
+            font-size: 2rem;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .bible:nth-child(1) {
+            left: 10%;
+            animation-duration: 5s;
+            animation-delay: 0s;
+        }
+        .bible:nth-child(2) {
+            left: 30%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+        .bible:nth-child(3) {
+            left: 50%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+        .bible:nth-child(4) {
+            left: 70%;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+        .bible:nth-child(5) {
+            left: 90%;
+            animation-duration: 6.5s;
+            animation-delay: 1.5s;
         }
         .container {
             text-align: center;
             color: white;
+            position: relative;
+            z-index: 1; /* Para garantir que o conteúdo fique acima da chuva */
         }
         .logo {
             font-size: 3rem;
@@ -96,12 +145,53 @@
             font-size: 1.2rem;
             margin-top: 20px;
         }
+        /* Estilo para o controle de música */
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .music-control i {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        /* Estilo para o vídeo */
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
+    <!-- Efeito de chuva de Bíblias -->
+    <div class="rain">
+        <div class="bible">📖</div>
+        <div class="bible">📖</div>
+        <div class="bible">📖</div>
+        <div class="bible">📖</div>
+        <div class="bible">📖</div>
+    </div>
+
+    <!-- Controle de música -->
+    <div class="music-control" onclick="toggleMusic()">
+        <i id="musicIcon" class="fas fa-play"></i>
+    </div>
+
     <div class="cross"></div>
     <div class="container">
-        <div class="logo">📖 Quiz Bíblico</div>
+        <div class="logo">📖 Quiz Bíblico</div> <br><br>
+        <img src="imagens/jovens2.jpeg" alt=""  width="300px"  height="250px"> <br>
         <div class="name-container" id="nameContainer">
             <input type="text" id="playerName" placeholder="Digite seu nome ou nickname" />
             <button class="start-btn" onclick="startQuiz()">Começar</button>
@@ -115,7 +205,21 @@
             <div class="ranking" id="ranking"></div>
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
+        <!-- Contêiner do vídeo -->
+        <div class="video-container" id="videoContainer" style="display: none;">
+            <video id="finalVideo" width="640" height="360" controls>
+                <source src="videos/videojovens1.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+        </div>
     </div>
+
+    <!-- Áudio para a música de fundo -->
+    <audio id="backgroundMusic" loop>
+        <source src="sua_musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
     <script>
         const questions = [
             { question: "Qual é o início da sabedoria, segundo o livro de Provérbios?", options: ["Temer a Deus", "Estudar muito", "Ter riqueza", "Fazer boas ações"], answer: 0 },
@@ -134,6 +238,29 @@
         let score = 0;
         let playerName = '';
         let rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+
+        // Controle de música
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicIcon = document.getElementById('musicIcon');
+
+        function toggleMusic() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                musicIcon.classList.remove('fa-play');
+                musicIcon.classList.add('fa-pause');
+            } else {
+                backgroundMusic.pause();
+                musicIcon.classList.remove('fa-pause');
+                musicIcon.classList.add('fa-play');
+            }
+        }
+
+        // Iniciar música automaticamente ao carregar a página
+        window.onload = function() {
+            backgroundMusic.play();
+            musicIcon.classList.remove('fa-play');
+            musicIcon.classList.add('fa-pause');
+        };
 
         function startQuiz() {
             playerName = document.getElementById('playerName').value;
@@ -160,9 +287,9 @@
             let q = questions[currentQuestionIndex];
             if (selectedIndex === q.answer) {
                 score += 10;
-                alert("Resposta correta!");
+                alert("Resposta correta,você e fera parabéns!!!!");
             } else {
-                alert("Resposta errada. Tente novamente!");
+                alert("Resposta errada. Tente novamente,se ligaa!!!");
             }
             document.getElementById("score").innerText = "Pontuação: " + score;
             currentQuestionIndex++;
@@ -190,6 +317,11 @@
                 rankingHtml += `<p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>`;
             });
             document.getElementById("ranking").innerHTML = rankingHtml;
+
+            // Exibir o vídeo ao final do quiz
+            document.getElementById("videoContainer").style.display = "block";
+            const finalVideo = document.getElementById("finalVideo");
+            finalVideo.play(); // Inicia a reprodução do vídeo automaticamente
         }
 
         function resetGame() {
@@ -198,6 +330,10 @@
             document.getElementById('playerName').value = '';
             document.getElementById("nameContainer").style.display = "block";
             document.getElementById("rankingContainer").style.display = "none";
+            document.getElementById("videoContainer").style.display = "none";
+            const finalVideo = document.getElementById("finalVideo");
+            finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
+            finalVideo.currentTime = 0; // Reinicia o vídeo para o início
         }
     </script>
 </body>
