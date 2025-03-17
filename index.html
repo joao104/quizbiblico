@@ -206,19 +206,12 @@
             <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
         </div>
         <!-- Contêiner do vídeo -->
-        <div class="video-container" id="videoContainer" style="display: none;">
-            <video id="finalVideo" width="640" height="360" controls>
-                <source src="videos/videojovens1.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
-    </div>
-
-    <!-- Áudio para a música de fundo -->
-    <audio id="backgroundMusic" loop>
-        <source src="sua_musica.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+        allowfullscreen>
+    </iframe>
+</div>
 
     <script>
         const questions = [
