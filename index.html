@@ -1,318 +1,316 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Bíblico</title> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4a90e2, #1e3c72);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden; /* Para evitar barras de rolagem */
-            position: relative;
-        }
-        .rain {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-            pointer-events: none; /* Para não interferir com os cliques do quiz */
-        }
-        .bible {
-            position: absolute;
-            top: -50px;
-            font-size: 2rem;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-        .bible:nth-child(1) {
-            left: 10%;
-            animation-duration: 5s;
-            animation-delay: 0s;
-        }
-        .bible:nth-child(2) {
-            left: 30%;
-            animation-duration: 7s;
-            animation-delay: 2s;
-        }
-        .bible:nth-child(3) {
-            left: 50%;
-            animation-duration: 6s;
-            animation-delay: 1s;
-        }
-        .bible:nth-child(4) {
-            left: 70%;
-            animation-duration: 8s;
-            animation-delay: 3s;
-        }
-        .bible:nth-child(5) {
-            left: 90%;
-            animation-duration: 6.5s;
-            animation-delay: 1.5s;
-        }
-        .container {
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 1; /* Para garantir que o conteúdo fique acima da chuva */
-        }
-        .logo {
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        .start-btn, .submit-btn {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.5rem;
-            border: none;
-            border-radius: 10px;
-            background: #ffd700;
-            color: #333;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .start-btn:hover, .submit-btn:hover {
-            background: #ffcc00;
-        }
-        .cross {
-            width: 80px;
-            height: 100px;
-            background: gold;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            transform: rotate(20deg);
-        }
-        .cross:before {
-            content: "";
-            width: 100px;
-            height: 30px;
-            background: gold;
-            position: absolute;
-            top: 35px;
-            left: -10px;
-        }
-        .quiz-container, .name-container, .ranking-container {
-            display: none;
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            color: black;
-        }
-        .name-container {
-            display: block; /* Certifique-se que o nome-container está visível */
-        }
-        .question {
-            font-size: 1.5rem;
-        }
-        .options {
-            margin-top: 15px;
-        }
-        .option {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 5px;
-            background: #4a90e2;
-            color: white;
-            cursor: pointer;
-        }
-        .option:hover {
-            background: #357ab8;
-        }
-        .score {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .ranking {
-            font-size: 1.2rem;
-            margin-top: 20px;
-        }
-        /* Estilo para o controle de música */
-        .music-control {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .music-control i {
-            font-size: 1.5rem;
-            color: #333;
-        }
-        /* Estilo para o vídeo */
-        .video-container {
-            margin-top: 20px;
-            text-align: center;
-            display: none;
-        }
-        video {
-            max-width: 100%;
-             display: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Desafio Bíblico - Marcos</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+text-align:center;
+}
+
+header{
+padding:25px;
+font-size:24px;
+font-weight:bold;
+}
+
+.card{
+background:white;
+color:#333;
+max-width:550px;
+margin:auto;
+margin-top:20px;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#3498db;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#2980b9;
+}
+
+input[type="text"]{
+padding:10px;
+width:80%;
+margin:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.capitulo{
+background:#f4f4f4;
+padding:15px;
+border-radius:10px;
+margin:15px 0;
+}
+
+.capitulo a{
+text-decoration:none;
+background:#27ae60;
+color:white;
+padding:10px 15px;
+border-radius:6px;
+display:inline-block;
+margin-top:8px;
+}
+
+.capitulo a:hover{
+background:#1e874b;
+}
+
+.estrelas{
+font-size:30px;
+color:gold;
+margin-top:10px;
+}
+
+.perguntas{
+text-align:left;
+margin-top:20px;
+}
+
+hr{
+margin:20px 0;
+}
+
+</style>
+
 </head>
+
 <body>
-    <!-- Efeito de chuva de Bíblias -->
-    <div class="rain">
-        <div class="bible">📖</div>
-        <div class="bible">📖</div>
-        <div class="bible">📖</div>
-        <div class="bible">📖</div>
-        <div class="bible">📖</div>
-    </div>
-    <div class="cross"></div>
-    <div class="container">
-        <div class="logo">📖 Quiz Bíblico</div> <br><br>
-        <img src="imagens/jovens2.jpeg" alt=""  width="300px"  height="250px"> <br>
-        <div class="name-container" id="nameContainer">
-            <input type="text" id="playerName" placeholder="Digite seu nome ou nickname" />
-            <button class="start-btn" onclick="startQuiz()">Começar</button>
-        </div>
-        <div class="quiz-container" id="quizContainer">
-            <div class="question" id="question"></div>
-            <div class="options" id="options"></div>
-            <div class="score" id="score">Pontuação: 0</div>
-        </div>
-        <div class="ranking-container" id="rankingContainer">
-            <div class="ranking" id="ranking"></div>
-            <button class="start-btn" onclick="resetGame()">Jogar novamente</button>
-        </div>
-                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="https://drive.google.com/file/d/10yYaG_A2pCuR4ak6OZoCyGZbusAsTegR/preview" 
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
-        allowfullscreen>
-    </iframe>
+
+<header>
+📖 Desafio Bíblico - Evangelho de Marcos
+</header>
+
+<!-- TELA INICIAL -->
+
+<div id="inicio" class="card">
+
+<h2>Bem-vindo!</h2>
+
+<p>
+Durante este mês vamos ler o Evangelho de Marcos.
+</p>
+
+<p>
+📖 Ler <b>3 capítulos por dia</b><br>
+❓ Responder perguntas<br>
+⭐ Ganhar uma estrela
+</p>
+
+<p>
+🏆 Quem completar todos os dias ganhará um prêmio no culto de jovens!
+</p>
+
+<button onclick="irLogin()">Começar</button>
+
 </div>
 
-    <script>
-        const questions = [
-            { question: "Qual é o início da sabedoria, segundo o livro de Provérbios?", options: ["Temer a Deus", "Estudar muito", "Ter riqueza", "Fazer boas ações"], answer: 0 },
-            { question: "O que é mais precioso do que rubis, segundo Provérbios?", options: ["A sabedoria", "A amizade", "O amor", "A coragem"], answer: 0 },
-            { question: "Segundo Provérbios, o que devemos fazer para encontrar sabedoria?", options: ["Buscar com diligência", "Estudar as escrituras", "Pedir a Deus", "Meditar"], answer: 0 },
-            { question: "Quem é o amigo que ama em todo o tempo, de acordo com Provérbios?", options: ["O sábio", "O rico", "O justo", "O irmão"], answer: 3 },
-            { question: "O que diz Provérbios sobre a boca do tolo?", options: ["Fala de sabedoria", "Fala em maldade", "Fala com sabedoria", "Fala com amor"], answer: 1 },
-            { question: "O que Provérbios ensina sobre a ira?", options: ["A ira do homem não opera a justiça de Deus", "A ira é justa em todas as situações", "A ira é a melhor resposta", "A ira deve ser controlada com sabedoria"], answer: 0 },
-            { question: "Como a mulher sábia é descrita em Provérbios?", options: ["Com palavras amáveis", "Com grande beleza", "Com riqueza", "Com muitas posses"], answer: 0 },
-            { question: "O que diz Provérbios sobre os caminhos do justo?", options: ["São retos", "São incertos", "São tortuosos", "São perigosos"], answer: 0 },
-            { question: "O que é mais forte que a força física, segundo Provérbios?", options: ["A sabedoria", "A coragem", "A paciência", "A raiva"], answer: 0 },
-            { question: "O que Provérbios ensina sobre o trabalho?", options: ["É uma benção", "É um fardo", "Deve ser evitado", "É necessário para a vida"], answer: 3 }
-        ];
-        
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let playerName = '';
-        let rankings = JSON.parse(localStorage.getItem('rankings')) || [];
+<!-- LOGIN -->
 
-        // Controle de música
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const musicIcon = document.getElementById('musicIcon');
+<div id="login" class="card" style="display:none">
 
-        function toggleMusic() {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                musicIcon.classList.remove('fa-play');
-                musicIcon.classList.add('fa-pause');
-            } else {
-                backgroundMusic.pause();
-                musicIcon.classList.remove('fa-pause');
-                musicIcon.classList.add('fa-play');
-            }
-        }
-        function startQuiz() {
-            playerName = document.getElementById('playerName').value;
-            if (playerName.trim() === '') {
-                alert('Por favor, insira um nome!');
-                return;
-            }
-            document.getElementById("nameContainer").style.display = "none";
-            document.getElementById("quizContainer").style.display = "block";
-            showQuestion();
-        }
+<h2>Entrar</h2>
 
-        function showQuestion() {
-            let q = questions[currentQuestionIndex];
-            document.getElementById("question").innerText = q.question;
-            let optionsHtml = "";
-            q.options.forEach((opt, index) => {
-                optionsHtml += `<button class='option' onclick='checkAnswer(${index})'>${opt}</button>`;
-            });
-            document.getElementById("options").innerHTML = optionsHtml;
-        }
+<input id="nome" type="text" placeholder="Digite seu nome">
 
-        function checkAnswer(selectedIndex) {
-            let q = questions[currentQuestionIndex];
-            if (selectedIndex === q.answer) {
-                score += 10;
-                alert("Resposta correta,você e fera parabéns!!!!");
-            } else {
-                alert("Resposta errada. Tente novamente,se ligaa!!!");
-            }
-            document.getElementById("score").innerText = "Pontuação: " + score;
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                showQuestion();
-            } else {
-                alert("Quiz finalizado! Sua pontuação foi: " + score);
-                saveScore();
-                showRanking();
-            }
-        }
+<br>
 
-        function saveScore() {
-            rankings.push({ name: playerName, score: score });
-            rankings.sort((a, b) => b.score - a.score); // Ordena por pontuação
-            if (rankings.length > 5) rankings = rankings.slice(0, 5); // Limita aos 5 primeiros
-            localStorage.setItem('rankings', JSON.stringify(rankings));
-        }
-        function showRanking() {
-            document.getElementById("quizContainer").style.display = "none";
-            document.getElementById("rankingContainer").style.display = "block";
-            let rankingHtml = '<h3>Ranking:</h3>';
-            rankings.forEach((entry, index) => {
-                rankingHtml += `<p>${index + 1}. ${entry.name} - ${entry.score} pontos</p>`;
-            });
-            document.getElementById("ranking").innerHTML = rankingHtml;
+<button onclick="entrar()">Entrar</button>
 
-            // Exibir o vídeo ao final do quiz
-            document.getElementById("videoContainer").style.display = "block";
-            const finalVideo = document.getElementById("finalVideo");
-            finalVideo.play(); // Inicia a reprodução do vídeo automaticamente
-        }
+</div>
 
-        function resetGame() {
-            currentQuestionIndex = 0;
-            score = 0;
-            document.getElementById('playerName').value = '';
-            document.getElementById("nameContainer").style.display = "block";
-            document.getElementById("rankingContainer").style.display = "none";
-            document.getElementById("videoContainer").style.display = "none";
-            const finalVideo = document.getElementById("finalVideo");
-            finalVideo.pause(); // Pausa o vídeo ao reiniciar o quiz
-            finalVideo.currentTime = 0; // Reinicia o vídeo para o início
-        }
-    </script>
+<!-- SISTEMA -->
+
+<div id="sistema" class="card" style="display:none">
+
+<h2 id="bemvindo"></h2>
+
+<h3>Capítulos de hoje</h3>
+
+<div class="capitulo">
+<h4>📖 Marcos 1</h4>
+<a href="https://www.bibliaon.com/marcos_1/" target="_blank">Ler capítulo</a>
+</div>
+
+<div class="capitulo">
+<h4>📖 Marcos 2</h4>
+<a href="https://www.bibliaon.com/marcos_2/" target="_blank">Ler capítulo</a>
+</div>
+
+<div class="capitulo">
+<h4>📖 Marcos 3</h4>
+<a href="https://www.bibliaon.com/marcos_3/" target="_blank">Ler capítulo</a>
+</div>
+
+<div class="perguntas">
+
+<h2>❓ Perguntas</h2>
+
+<h3>📖 Marcos 1</h3>
+
+<p>Quem batizou Jesus no rio Jordão?</p>
+
+<input type="radio" name="p1" value="0"> Pedro<br>
+<input type="radio" name="p1" value="1"> João Batista<br>
+<input type="radio" name="p1" value="0"> Tiago<br>
+
+<br>
+
+<p>O que aconteceu quando Jesus foi batizado?</p>
+
+<input type="radio" name="p2" value="1"> O Espírito Santo desceu como pomba<br>
+<input type="radio" name="p2" value="0"> Começou a chover<br>
+<input type="radio" name="p2" value="0"> O templo abriu<br>
+
+<hr>
+
+<h3>📖 Marcos 2</h3>
+
+<p>Como o paralítico chegou até Jesus?</p>
+
+<input type="radio" name="p3" value="1"> Desceram ele pelo telhado<br>
+<input type="radio" name="p3" value="0"> Ele entrou correndo<br>
+<input type="radio" name="p3" value="0"> Foi levado por soldados<br>
+
+<br>
+
+<p>O que Jesus disse ao paralítico primeiro?</p>
+
+<input type="radio" name="p4" value="1"> Seus pecados estão perdoados<br>
+<input type="radio" name="p4" value="0"> Levante e corra<br>
+<input type="radio" name="p4" value="0"> Vá para casa<br>
+
+<hr>
+
+<h3>📖 Marcos 3</h3>
+
+<p>O que Jesus curou no homem dentro da sinagoga?</p>
+
+<input type="radio" name="p5" value="1"> A mão ressequida<br>
+<input type="radio" name="p5" value="0"> A visão<br>
+<input type="radio" name="p5" value="0"> A perna<br>
+
+<br>
+
+<p>Quantos discípulos Jesus escolheu?</p>
+
+<input type="radio" name="p6" value="1"> 12<br>
+<input type="radio" name="p6" value="0"> 7<br>
+<input type="radio" name="p6" value="0"> 20<br>
+
+</div>
+
+<button onclick="confirmar()">Confirmar leitura do dia</button>
+
+<h3>⭐ Suas estrelas</h3>
+
+<div id="estrelas" class="estrelas"></div>
+
+</div>
+
+<script>
+
+let estrelas = 0
+
+function irLogin(){
+
+document.getElementById("inicio").style.display="none"
+document.getElementById("login").style.display="block"
+
+}
+
+function entrar(){
+
+let nome = document.getElementById("nome").value
+
+if(nome==""){
+alert("Digite seu nome")
+return
+}
+
+document.getElementById("login").style.display="none"
+document.getElementById("sistema").style.display="block"
+
+document.getElementById("bemvindo").innerText="Olá "+nome+"!"
+
+}
+
+function confirmar(){
+
+let respostas = document.querySelectorAll('input[type="radio"]:checked')
+
+if(respostas.length < 6){
+
+alert("Responda todas as perguntas!")
+
+return
+
+}
+
+let acertos = 0
+
+respostas.forEach(r => {
+
+if(r.value == "1"){
+acertos++
+}
+
+})
+
+if(acertos >= 5){
+
+estrelas++
+
+mostrarEstrelas()
+
+alert("🎉 Parabéns!\nVocê acertou "+acertos+" perguntas!\n\n⭐ Você ganhou uma estrela!\n\nAgora faça uma oração agradecendo a Deus pela Palavra.")
+
+}else{
+
+alert("😅 Você acertou apenas "+acertos+" perguntas.\n\nLeia novamente os capítulos!")
+
+}
+
+}
+
+function mostrarEstrelas(){
+
+let texto=""
+
+for(let i=0;i<estrelas;i++){
+
+texto+="⭐"
+
+}
+
+document.getElementById("estrelas").innerHTML=texto
+
+}
+
+</script>
+
 </body>
+
 </html>
